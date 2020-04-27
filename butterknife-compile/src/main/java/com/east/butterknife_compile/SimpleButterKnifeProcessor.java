@@ -58,19 +58,16 @@ import javax.tools.Diagnostic;
 // 用来生成 META-INF/services/javax.annotation.processing.Processor 文件
 @AutoService(Processor.class)
 public class SimpleButterKnifeProcessor extends AbstractProcessor {
-    //档案/文件管理器
-    private Filer mFiler;
-    //用于对程序Element进行操作的实用方法。
-    private Elements mElementUtils;
-    //用于对Type进行操作的实用方法。
-    private Types mTypeUtils;
+    private Filer mFiler;// 文件管理工具类，可以用于生成java源文件
+    private Elements mElementUtils;// Element处理工具类，获取Element的信息
+    private Types mTypeUtils;// 类型处理工具类，
     private Trees mTrees;
     private final Map<QualifiedId, Id> symbols = new LinkedHashMap<>();
 
     private static final List<String> SUPPORTED_TYPES = Arrays.asList(
             "array", "attr", "bool", "color", "dimen", "drawable", "id", "integer", "string"
     );
-    private Messager mMessager;
+    private Messager mMessager;//用于打印信息
 
     /**
      * 初始化处理器
